@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 0.2.1
-		Data:11/07/2017 14:58
+		Versão: 0.2.2
+		Data:11/07/2017 16:41
 	
 		obs: Sempre Editar a data da edição Meu Caros,
 		se for uma pequena complementação soma a versão: +X.1 , se for grande +1.X
@@ -13,7 +13,8 @@
 #include <Arduino.h>
 
 // declaração de objetos (Motores) // preciso da documentação e arquivos do motor 
-
+<nome do motor na biblioteca> motorRight(1, ); 
+<nome do motor na biblioteca> motorLeft(3, );  
 
 // Declaração de Variaveis úteis
 
