@@ -6,7 +6,7 @@
 
 - Linguagem: Arduino
 
-- Imagens do Cirtuits.io
+- Pasta Arduino = Arquivos para testar / Circuits.io = Fotos / Samples = Exemplos 
 
 ### Regras
 
