@@ -1,4 +1,4 @@
-# fiap-caubi
+# FIAP-caubi
 
 ### Sobre
 
@@ -15,3 +15,10 @@
 - Colocar as fotos Separadas do codigo, correspondente a versão dada por data e hora
 
 - Só complementar com seu conhecimento :)
+
+## Grupo
+- Camila
+- Fabio Molliet
+- Lucas 
+- Lucas
+- Natalia
