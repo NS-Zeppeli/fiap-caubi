@@ -1,15 +1,18 @@
 /*
 		Robo: Caubi 
-		Versão: 0.1
-		Data:11/07/2017 12:13
+		Versão: 0.2
+		Data:11/07/2017 12:28
 	
-		obs: Sempre anotar a data da edição Meu Caros,
+		obs: Sempre Editar a data da edição Meu Caros,
 		se for uma pequena complementação soma a versão: +X.1 , se for grande +1.X
 		Vou deixar esse espaço de complementação e comentários
 */
 
 // Falta biblioteca do motor // entrada e saida de dados ?
 #include <>
+#include <Arduino.h>
+// declaração de objetos (Motores) // preciso da documentação e arquivos do motor 
+
 
 // Declaração de Variaveis úteis
 
