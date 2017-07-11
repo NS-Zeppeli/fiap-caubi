@@ -4,11 +4,8 @@
 // |_/___|___/___/   \___|___|_|_\\___|\___/|___| |_| |___/ 
 // 
 // Aula de arduino Por Fabio Pimentel
-// 
-// License: CC-BY-SA 3.0
 
 // Pin 13 has an LED connected on most Arduino boards.
-// give it a name:
 // Variaveis sao declaradas com os pinos que elas estao encaixadas por exemplo X = pino 13 == X = 13;
 int L2 = 13;
 int CHA = 10;
