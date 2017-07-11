@@ -10,7 +10,7 @@
 
 ### Regras
 
-- Não estragar o Codigo do Fabio
+- *EXTREMAMENTE IMPORTANTE* Não estragar o Codigo do Fabio
 
 - Colocar as fotos Separadas do codigo, correspondente a versão dada por data e hora
 
