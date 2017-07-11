@@ -16,7 +16,7 @@
 
 - Só complementar com seu conhecimento :)
 
-## Grupo
+### Grupo
 - Camila
 - Fabio Molliet
 - Lucas 
