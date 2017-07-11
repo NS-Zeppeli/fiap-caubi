@@ -6,7 +6,7 @@
 
 - Linguagem: Arduino
 
-- Pasta Arduino = Arquivos para testar / Circuits.io = Fotos / Samples = Exemplos 
+- Pasta Arduino = Main Branch / Circuits.io = Fotos / Samples = Exemplos 
 
 ### Regras
 
