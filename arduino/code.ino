@@ -1,26 +1,26 @@
 /*
 		Robo: Caubi 
-		Versão: 0.2
-		Data:11/07/2017 12:28
+		Versão: 0.2.1
+		Data:11/07/2017 14:58
 	
 		obs: Sempre Editar a data da edição Meu Caros,
 		se for uma pequena complementação soma a versão: +X.1 , se for grande +1.X
 		Vou deixar esse espaço de complementação e comentários
 */
 
-// Falta biblioteca do motor // entrada e saida de dados ?
-#include <>
+// Bibliotecas 
+#include <> // Falta biblioteca do motor
 #include <Arduino.h>
+
 // declaração de objetos (Motores) // preciso da documentação e arquivos do motor 
 
 
 // Declaração de Variaveis úteis
 
-char dataIn = 'S';
-char determinant;
-int vel = 0					// coisa do bluetooth
+char dataIn = 'P';  // começa parado
+char determinante;
+int vel = 0;					// coisa do bluetooth
 char data = 0;            //Variavel para armazenar dados
-
 
 
 void setup()
@@ -34,6 +34,8 @@ void setup()
 	motorRight.run(RELEASE);
 	motorLeft.run(RELEASE);
 }
+
+
 void loop()
 {
    data = check();
@@ -61,7 +63,7 @@ void loop()
     motorLeft.setSpeed(vel);
     motorRight.run(FORWARD);      
     motorLeft.run(FORWARD);
-    det = check();
+    data = check();
     break;
     
     case 'T': // T move para tras
@@ -69,7 +71,7 @@ void loop()
     motorLeft.setSpeed(vel);
     motorRight.run(BACKWARD);      
     motorLeft.run(BACKWARD);
-    det = check();
+    data = check();
     break;
     
     case 'E':// E vai para esquerda
@@ -77,7 +79,7 @@ void loop()
     motorLeft.setSpeed(vel/4);
     motorRight.run(FORWARD);      
     motorLeft.run(FORWARD);
-    det = check();
+    data = check();
     break;
     
     case 'D': // D vai pra direira
@@ -85,7 +87,7 @@ void loop()
     motorLeft.setSpeed(vel);
     motorRight.run(FORWARD);      
     motorLeft.run(FORWARD);
-    det = check();
+    data = check();
     break;
 	
 	case 'P': // P, para
@@ -93,7 +95,7 @@ void loop()
     motorLeft.setSpeed(vel);
     motorRight.run(RELEASE);      
     motorLeft.run(RELEASE);
-    det = check();
+    data = check();
     break;
 	}
 	// pega o codigo do bluetooth pela porta serial
@@ -103,19 +105,19 @@ void loop()
     
     // Checa o codigo
     if (dataIn == 'F'){//Frente
-      determinant = 'F';
+      determinante = 'F';
     }
     else if (dataIn == 'T'){//para Trás
-      determinant = 'T';
+      determinante = 'T';
     }
     else if (dataIn == 'E'){//Esquerda
-      determinant = 'E';
+      determinante = 'E';
     }
     else if (dataIn == 'D'){//Right
-      determinant = 'D';
+      determinante = 'D';
     }
 	else if (dataIn == 'S'){//Stop
-      determinant = 'S';
+      determinante = 'S';
     }
   }
 }
