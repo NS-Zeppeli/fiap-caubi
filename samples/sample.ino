@@ -3,11 +3,9 @@
 // | |/ / |_ \ |) | | (__ | ||   / (__| |_| || |  | | \__ \ 
 // |_/___|___/___/   \___|___|_|_\\___|\___/|___| |_| |___/ 
 // 
-// Jojo Fags May Cry
+// Aula de arduino Por Fabio Pimentel
 // 
-// Made by Ainsley Sensei
 // License: CC-BY-SA 3.0
-// Downloaded from: https://circuits.io/circuits/5078048-jojo-fags-may-cry
 
 // Pin 13 has an LED connected on most Arduino boards.
 // give it a name:
