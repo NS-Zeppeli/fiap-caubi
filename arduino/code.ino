@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 0.2.2
-		Data:11/07/2017 16:41
+		Versão: 0.3
+		Data:12/07/2017 8:54
 	
 		obs: Sempre Editar a data da edição Meu Caros,
 		se for uma pequena complementação soma a versão: +X.1 , se for grande +1.X
@@ -27,10 +27,10 @@ char data = 0;            //Variavel para armazenar dados
 void setup()
 {
     Serial.begin(9600);   //Prepara o baud para transmissão de dados em serial                            
-    pinMode(13, OUTPUT);  //Coloca o pin 13 como saida
+    // pinMode(13, OUTPUT);  //Coloca o pin 13 como saida para Led
 	// precisa ver isso no motor que agente comprar
 	// pode mudar \/
-	motorRight.setSpeed(0);
+	motorRight.setSpeed(0); // motor right vem da biblioteca
 	motorLeft.setSpeed(0);
 	motorRight.run(RELEASE);
 	motorLeft.run(RELEASE);
@@ -60,44 +60,44 @@ void loop()
 	*/
     switch (data){
 		case 'F': // F, move para frente
-    motorRight.setSpeed(vel);
-    motorLeft.setSpeed(vel);
-    motorRight.run(FORWARD);      
-    motorLeft.run(FORWARD);
-    data = check();
-    break;
+		motorRight.setSpeed(vel);
+		motorLeft.setSpeed(vel);
+		motorRight.run(FORWARD);      
+		motorLeft.run(FORWARD);
+		data = check();
+		break;
     
-    case 'T': // T move para tras
-    motorRight.setSpeed(vel);
-    motorLeft.setSpeed(vel);
-    motorRight.run(BACKWARD);      
-    motorLeft.run(BACKWARD);
-    data = check();
-    break;
+		case 'T': // T move para tras
+		motorRight.setSpeed(vel);
+		motorLeft.setSpeed(vel);
+		motorRight.run(BACKWARD);      
+		motorLeft.run(BACKWARD);
+		data = check();
+		break;
     
-    case 'E':// E vai para esquerda
-    motorRight.setSpeed(vel);
-    motorLeft.setSpeed(vel/4);
-    motorRight.run(FORWARD);      
-    motorLeft.run(FORWARD);
-    data = check();
-    break;
+		case 'E':// E vai para esquerda
+		motorRight.setSpeed(vel);
+		motorLeft.setSpeed(vel/4);
+		motorRight.run(FORWARD);      
+		motorLeft.run(FORWARD);
+		data = check();
+		break;
     
-    case 'D': // D vai pra direira
-    motorRight.setSpeed(vel/4);
-    motorLeft.setSpeed(vel);
-    motorRight.run(FORWARD);      
-    motorLeft.run(FORWARD);
-    data = check();
-    break;
+		case 'D': // D vai pra direira
+		motorRight.setSpeed(vel/4);
+		motorLeft.setSpeed(vel);
+		motorRight.run(FORWARD);      
+		motorLeft.run(FORWARD);
+		data = check();
+		break;
 	
-	case 'P': // P, para
-    motorRight.setSpeed(vel);
-    motorLeft.setSpeed(vel);
-    motorRight.run(RELEASE);      
-    motorLeft.run(RELEASE);
-    data = check();
-    break;
+		case 'P': // P, para
+		motorRight.setSpeed(vel);
+		motorLeft.setSpeed(vel);
+		motorRight.run(RELEASE);      
+		motorLeft.run(RELEASE);
+		data = check();
+		break;
 	}
 	// pega o codigo do bluetooth pela porta serial
 	int check(){
