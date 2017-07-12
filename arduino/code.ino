@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 0.3
-		Data:12/07/2017 8:54
+		Versão: 0.3.1
+		Data:12/07/2017 8:59
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -20,7 +20,7 @@ C:::::C                   A:::::::::::::::::::::A  U:::::D     D:::::U   B::::B 
      CCC::::::::::::C A:::::A                 A:::::A UU:::::::::UU    B::::::::::::::::B  I::::::::I
         CCCCCCCCCCCCCAAAAAAA                   AAAAAAA  UUUUUUUUU      BBBBBBBBBBBBBBBBB   IIIIIIIIII
 		
-		
+		// http://patorjk.com/blog/software/ // ASCII Art Source XD
 		obs: Sempre Editar a data da edição Meu Caros,
 		se for uma pequena complementação soma a versão: +X.1 , se for grande +1.X
 		Vou deixar esse espaço de complementação e comentários
