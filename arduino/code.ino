@@ -76,7 +76,7 @@ void loop()
 			Precisa Rever Tudo depois 
    
 	*/
-    switch (data){
+    switch (dataIn){
 		case 'F': // F, move para frente
 		motorRight.setSpeed(vel);
 		motorLeft.setSpeed(vel);
