@@ -102,7 +102,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btConectar);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Programa de Testes Serial-Arduino Por Molliet";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

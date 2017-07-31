@@ -130,3 +130,9 @@ namespace arduinoCteste
         }
     }
 }
+
+
+/*
+ *  Para testar as portas seriais so usar VSPE (Virtual Serial Port Emulator)
+ * 
+ * */
