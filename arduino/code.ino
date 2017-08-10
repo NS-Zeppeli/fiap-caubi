@@ -245,7 +245,7 @@ Voidloop{
 		motorLeft.run(RELEASE);
 		data = check();
 		break;
-		*/
+		
 }
 */
 
