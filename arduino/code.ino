@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 1.0.1
-		Data:10/08/2017 13:19
+		Versão: 2.0
+		Data:14/08/2017 17:16
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -38,10 +38,7 @@ AF_DCMotor motorLeft2(4); // o numero interno é a porta no shield XD
 
 // Declaração de Variaveis úteis
 
-char dataIn = 'P';  // começa parado
-char determinante;
-int vel = 0;					// coisa do bluetooth
-char data = 0;            //Variavel para armazenar dados
+//Variavel para armazenar dados
 const int Ledligado = 6; // liga led
 
 void setup()
@@ -50,10 +47,14 @@ void setup()
     // pinMode(13, OUTPUT);  //Coloca o pin 13 como saida para Led
 	// precisa ver isso no motor que agente comprar
 	// pode mudar \/
-	motorRight.setSpeed(0); // motor right vem da biblioteca
-	motorLeft.setSpeed(0);
-	motorRight.run(RELEASE);
-	motorLeft.run(RELEASE);
+	motorRight1.setSpeed(0); // motor right vem da biblioteca
+	motorLeft1.setSpeed(0);
+	motorRight1.run(RELEASE);
+	motorLeft1.run(RELEASE);
+	motorRight2.setSpeed(0); // motor right vem da biblioteca
+	motorLeft2.setSpeed(0);
+	motorRight2.run(RELEASE);
+	motorLeft2.run(RELEASE);
 	pinMode(Ledligado, OUTPUT);
 }
 
@@ -65,16 +66,16 @@ void loop()
 		parado(); //Inicializa os motores parados
 		//Serial.println(command); // printa comando para testar entrada
 		switch(command){
-		case 'F':  
+		case 'w':  
 		  Frente();
 		  break;
-		case 'T':  
+		case 's':  
 		   tras();
 		  break;
-		case 'E':  
+		case 'a':  
 		  esquerda();
 		  break;
-		case 'D':
+		case 'd':
 		  direita();  
 		  break;
 		  /*
@@ -151,104 +152,6 @@ void loop()
 	  motorLeft2.run(RELEASE);
 	}
 	
-	/*	
- _______  _____  ______  _____  ______  _____  _______      _______ __   _ _______ _____  ______  _____  _______
- |       |     | |     \   |   |  ____ |     | |______      |_____| | \  |    |      |   |  ____ |     | |______
- |_____  |_____| |_____/ __|__ |_____| |_____| ______|      |     | |  \_|    |    __|__ |_____| |_____| ______|
-	
-	// pega o codigo do bluetooth pela porta serial
-	int check(){
-  if (Serial.available() > 0){// Se for uma variavel valida do serial
-    dataIn = Serial.read();// guarda o valor da variavel
-    
-    // Checa o codigo
-    if (dataIn == 'F'){//Frente
-      determinante = 'F';
-    }
-    else if (dataIn == 'T'){//para Trás
-      determinante = 'T';
-    }
-    else if (dataIn == 'E'){//Esquerda
-      determinante = 'E';
-    }
-    else if (dataIn == 'D'){//Right
-      determinante = 'D';
-    }
-	else if (dataIn == 'S'){//Stop
-      determinante = 'S';
-    }
-  }
-}
-   return determinant;
-
-}
-
-
-
-
-Voidloop{
-	/* If para ligar led (TESTE)
-   if(Serial.available() > 0)      // manda dados somente quando receber dados:
-   {
-      data = Serial.read();        //ler os dados que vieram e armazena em data
-      Serial.print(data);          //Print do valor de data no monitor serial
-      Serial.print("\n");        
-      if(data == '1')              // Checa quando valor de data é igual a 1
-         digitalWrite(13, HIGH);   //Se o valor é 1 então LED liga
-      else if(data == '0')         // Checa quando valor de data é igual a 0
-         digitalWrite(13, LOW);    //Se o valor é 0 então LED desliga
-   }
-   */
-   /*
-   
-			Precisa Rever Tudo depois 
-   
-	*/
-	/*
-    switch (dataIn){
-		case 'F': // F, move para frente
-		motorRight.setSpeed(vel);
-		motorLeft.setSpeed(vel);
-		motorRight.run(FORWARD);      
-		motorLeft.run(FORWARD);
-		data = check();
-		break;
-    
-		case 'T': // T move para tras
-		motorRight.setSpeed(vel);
-		motorLeft.setSpeed(vel);
-		motorRight.run(BACKWARD);      
-		motorLeft.run(BACKWARD);
-		data = check();
-		break;
-    
-		case 'E':// E vai para esquerda
-		motorRight.setSpeed(vel);
-		motorLeft.setSpeed(vel/4);
-		motorRight.run(FORWARD);      
-		motorLeft.run(FORWARD);
-		data = check();
-		break;
-    
-		case 'D': // D vai pra direira
-		motorRight.setSpeed(vel/4);
-		motorLeft.setSpeed(vel);
-		motorRight.run(FORWARD);      
-		motorLeft.run(FORWARD);
-		data = check();
-		break;
-	
-		case 'P': // P, para
-		motorRight.setSpeed(vel);
-		motorLeft.setSpeed(vel);
-		motorRight.run(RELEASE);      
-		motorLeft.run(RELEASE);
-		data = check();
-		break;
-		
-}
-*/
-
 
 
 
