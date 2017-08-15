@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 2.0
-		Data:14/08/2017 17:16
+		Versão: 2.1
+		Data:15/08/2017 11:17
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -78,6 +78,9 @@ void loop()
 		case 'd':
 		  direita();  
 		  break;
+		case 'p':
+		  parado();
+		break;
 		  /*
 		case 'W':
 		  digitalWrite(6,HIGH);
