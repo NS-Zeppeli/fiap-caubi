@@ -65,7 +65,7 @@ void setup()
 void loop()
 {
 	switch (dataIn){
-		case 'W': // F, move para frente
+		case 'w': // F, move para frente
 		motorRight1.setSpeed(90);
 		motorRight1.run(FORWARD); 
 		motorRight2.setSpeed(90);
@@ -77,7 +77,7 @@ void loop()
 		data = check();
 		break;
     
-		case 'S': // T move para tras
+		case 's': // T move para tras
 		motorRight1.setSpeed(90); 
 		motorRight1.run(BACKWARD); //roda motor sentido anti-horario
 		motorRight2.setSpeed(90); 
@@ -89,7 +89,7 @@ void loop()
 		data = check();
 		break;
     
-		case 'A':// E vai para esquerda
+		case 'a':// E vai para esquerda
 		motorRight1.setSpeed(90); // coloca velociade maxima
 		motorRight1.run(FORWARD);
 		motorRight2.setSpeed(90); 
@@ -101,7 +101,7 @@ void loop()
 		data = check();
 		break;
     
-		case 'D': // D vai pra direira
+		case 'd': // D vai pra direira
 		motorRight1.setSpeed(0); //Desliga motor 1
 		motorRight2.setSpeed(0);
 		motorRight1.run(RELEASE);
@@ -113,7 +113,7 @@ void loop()
 		data = check();
 		break;
 	
-		case 'E': // P, para
+		case 'q': // q, para
 		motorRight1.setSpeed(0);
 		motorRight2.setSpeed(0);
 		motorRight1.run(RELEASE); 

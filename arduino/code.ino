@@ -78,7 +78,7 @@ void loop()
 		case 'd':
 		  direita();  
 		  break;
-		case 'p':
+		case 'q':
 		  parado();
 		break;
 		  /*
