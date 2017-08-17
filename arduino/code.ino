@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 2.2
-		Data:16/08/2017 16:00
+		Versão: 2.3
+		Data:17/08/2017 12:23
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -69,13 +69,13 @@ void loop()
 		case 'w':  
 		  Frente();
 		  break;
-		case 's':  
+		case 'x':  
 		   tras();
 		  break;
-		case 'a':  
+		case 'z':  
 		  esquerda();
 		  break;
-		case 'd':
+		case 'y':
 		  direita();  
 		  break;
 		case 'q':

@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 2.2
-		Data:16/08/2017 16:00
+		Versão: 2.3
+		Data:17/08/2017 12:23
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -65,7 +65,7 @@ void setup()
 void loop()
 {
 	switch (dataIn){
-		case 'w': // F, move para frente
+		case 'w': // w, move para frente
 		motorRight1.setSpeed(90);
 		motorRight1.run(FORWARD); 
 		motorRight2.setSpeed(90);
@@ -77,7 +77,7 @@ void loop()
 		data = check();
 		break;
     
-		case 's': // T move para tras
+		case 'x': // x move para tras
 		motorRight1.setSpeed(90); 
 		motorRight1.run(BACKWARD); //roda motor sentido anti-horario
 		motorRight2.setSpeed(90); 
@@ -89,7 +89,7 @@ void loop()
 		data = check();
 		break;
     
-		case 'a':// E vai para esquerda
+		case 'z':// z vai para esquerda
 		motorRight1.setSpeed(90); // coloca velociade maxima
 		motorRight1.run(FORWARD);
 		motorRight2.setSpeed(90); 
@@ -101,7 +101,7 @@ void loop()
 		data = check();
 		break;
     
-		case 'd': // D vai pra direira
+		case 'y': // y vai pra direira
 		motorRight1.setSpeed(0); //Desliga motor 1
 		motorRight2.setSpeed(0);
 		motorRight1.run(RELEASE);
