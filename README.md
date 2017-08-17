@@ -10,7 +10,7 @@
 
 ### Regras
 
-- *EXTREMAMENTE IMPORTANTE* Não estragar o Codigo do Fabio
+- *EXTREMAMENTE IMPORTANTE* Se for fazer um Branch, Criar solicitação, ou criar um novo arquivo a ser Avaliado
 
 - Colocar as fotos Separadas do codigo, correspondente a versão dada por data e hora
 
