@@ -1,6 +1,6 @@
 /*
 		Robo: Caubi 
-		Versão: 3.1
+		Versão: 3.3
 		Data:01/09/2017 
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
@@ -49,7 +49,7 @@ DHT dht(DHTPIN, DHTTYPE);
 
 // Declaração de Variaveis úteis
 
-char dataIn = 'P';  // começa parado
+char dataIn = 'q';  // começa parado
 char determinante;
 					// coisa do bluetooth
 char data = 0;            //Variavel para armazenar dados
@@ -77,55 +77,27 @@ void loop()
  	// Escreve valores na serial (TX do Arduino)
 	 Serial.print("X: ");
  	Serial.println(X);
-	switch (dataIn){
-		case 'w':  
-		  Frente();
-		  break;
-		case 'x':  
-		   tras();
-		  break;
-		case 'z':  
-		  esquerda();
-		  break;
-		case 'y':
-		  direita();  
-		  break;
-		case 'q':
-		  parado();
-		break;
-		
+	if (Serial.available() > 0){// Se for uma variavel valida do serial
+    		dataIn = Serial.read();
+		switch (dataIn){
+			case 'w':  
+			  Frente();
+			  break;
+			case 'x':  
+			   tras();
+			  break;
+			case 'z':  
+			  esquerda();
+			  break;
+			case 'y':
+			  direita();  
+			  break;
+			case 'q':
+			  parado();
+			break;
+		}	
 	}
 }		
-
-
-// pega o codigo do bluetooth pela porta serial
-int check(){
-if (Serial.available() > 0){// Se for uma variavel valida do serial
-    dataIn = Serial.read();// guarda o valor da variavel
-    
-    // Checa o codigo
-    if (dataIn == 'F'){//Frente
-      determinante = 'F';
-    }
-    else if (dataIn == 'T'){//para Trás
-      determinante = 'T';
-    }
-    else if (dataIn == 'E'){//Esquerda
-      determinante = 'E';
-    }
-    else if (dataIn == 'D'){//Right
-      determinante = 'D';
-    }
-	else if (dataIn == 'S'){//Stop
-      determinante = 'S';
-    }
-  }
-}
-   return determinant;
-}	
-
-
-
 
 	void frente() // vai para frente 
 	{
