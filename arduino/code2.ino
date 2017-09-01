@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Vers„o: 2.3
-		Data:17/08/2017 12:23
+		Vers√£o: 3.1
+		Data:01/09/2017 
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -21,108 +21,77 @@ C:::::C                   A:::::::::::::::::::::A  U:::::D     D:::::U   B::::B 
         CCCCCCCCCCCCCAAAAAAA                   AAAAAAA  UUUUUUUUU      BBBBBBBBBBBBBBBBB   IIIIIIIIII
 		
 		// http://patorjk.com/blog/software/ // ASCII Art Source XD
-		obs: Sempre Editar a data da ediÁ„o Meu Caros,
-		se for uma pequena complementaÁ„o soma a vers„o: +X.1 , se for grande +1.X
-		Vou deixar esse espaÁo de complementaÁ„o e coment·rios
+		obs: Sempre Editar a data da edi√ß√£o 
+		se for uma pequena complementa√ß√£o soma a vers√£o: +X.1 , se for grande +1.X
+		Vou deixar esse espa√ßo de complementa√ß√£o e coment√°rios
 */
 
 // Bibliotecas 
-#include <AFMotor.h> // biblioteca do motor
+
 #include <Arduino.h>
 
-// declaraÁ„o de objetos (Motores) // preciso da documentaÁ„o e arquivos do motor 
-AF_DCMotor motorRight1(1); 
-AF_DCMotor motorRight2(2);
-AF_DCMotor motorLeft1(3);
-AF_DCMotor motorLeft2(4); // o numero interno È a porta no shield XD
+#include <DHT.h>
 
-// DeclaraÁ„o de Variaveis ˙teis
+#define DHTPIN A0
+#define DHTTYPE DHT11
 
-char dataIn = 'P';  // comeÁa parado
+int IN1 = 4; 	//motor Dianteiro direito
+int IN2 = 5; 	//motor Dianteiro direito
+int IN3 = 6;	//motor Traseiro direito
+int IN4 = 7;	//motor Traseiro direito
+int IN5 = 8;	//motor Dianteiro Esquerdo
+int IN6 = 9;	//motor Dianteiro Esquerdo
+int IN7 = 10;	//motor Traseiro Esquerdo
+int IN8 = 11;	//motor Traseiro Esquerdo
+
+DHT dht(DHTPIN, DHTTYPE);
+// declara√ß√£o de objetos (Motores) // preciso da documenta√ß√£o e arquivos do motor 
+
+// Declara√ß√£o de Variaveis √∫teis
+
+char dataIn = 'P';  // come√ßa parado
 char determinante;
-int vel = 0;					// coisa do bluetooth
+					// coisa do bluetooth
 char data = 0;            //Variavel para armazenar dados
-const int Ledligado = 6; // liga led
 
 void setup()
 {
-    Serial.begin(9600);   //Prepara o baud para transmiss„o de dados em serial                            
-    // pinMode(13, OUTPUT);  //Coloca o pin 13 como saida para Led
-	// precisa ver isso no motor que agente comprar
-	// pode mudar \/
-	motorRight1.setSpeed(0); // motor right vem da biblioteca
-	motorLeft1.setSpeed(0);
-	motorRight1.run(RELEASE);
-	motorLeft1.run(RELEASE);
-	motorRight2.setSpeed(0); // motor right vem da biblioteca
-	motorLeft2.setSpeed(0);
-	motorRight2.run(RELEASE);
-	motorLeft2.run(RELEASE);
-	pinMode(Ledligado, OUTPUT);
+   	Serial.begin(9600);   //Prepara o baud para transmiss√£o de dados em serial                           
+	pinMode(IN1, OUTPUT);
+ 	pinMode(IN2, OUTPUT);
+ 	pinMode(IN3, OUTPUT);
+ 	pinMode(IN4, OUTPUT); 
+	pinMode(IN5, OUTPUT);
+ 	pinMode(IN6, OUTPUT);
+ 	pinMode(IN7, OUTPUT);
+ 	pinMode(IN8, OUTPUT);
 }
 
 
 void loop()
 {
-	switch (dataIn){
-		case 'w': // w, move para frente
-		motorRight1.setSpeed(90);
-		motorRight1.run(FORWARD); 
-		motorRight2.setSpeed(90);
-		motorRight2.run(FORWARD);
-		motorLeft1.setSpeed(90);
-		motorLeft1.run(FORWARD); 
-		motorLeft2.setSpeed(90);
-		motorLeft2.run(FORWARD);
-		data = check();
-		break;
-    
-		case 'x': // x move para tras
-		motorRight1.setSpeed(90); 
-		motorRight1.run(BACKWARD); //roda motor sentido anti-horario
-		motorRight2.setSpeed(90); 
-		motorRight2.run(BACKWARD); 
-		motorLeft1.setSpeed(90); 
-		motorLeft1.run(BACKWARD); //roda motor sentido anti-horario
-		motorLeft2.setSpeed(90); 
-		motorLeft2.run(BACKWARD);
-		data = check();
-		break;
-    
-		case 'z':// z vai para esquerda
-		motorRight1.setSpeed(90); // coloca velociade maxima
-		motorRight1.run(FORWARD);
-		motorRight2.setSpeed(90); 
-		motorRight2.run(FORWARD);	  
-		motorLeft1.setSpeed(0); // desliga motor 2
-		motorLeft1.run(RELEASE);
-		motorLeft2.setSpeed(0); 
-		motorLeft2.run(RELEASE);	
-		data = check();
-		break;
-    
-		case 'y': // y vai pra direira
-		motorRight1.setSpeed(0); //Desliga motor 1
-		motorRight2.setSpeed(0);
-		motorRight1.run(RELEASE);
-		motorRight2.run(RELEASE);
-		motorLeft1.setSpeed(90);
-		motorLeft2.setSpeed(90);
-		motorLeft1.run(FORWARD); 
-		motorLeft2.run(FORWARD);
-		data = check();
-		break;
 	
-		case 'q': // q, para
-		motorRight1.setSpeed(0);
-		motorRight2.setSpeed(0);
-		motorRight1.run(RELEASE); 
-		motorRight2.run(RELEASE);
-		motorLeft1.setSpeed(0);
-		motorLeft2.setSpeed(0);
-		motorLeft1.run(RELEASE);
-		motorLeft2.run(RELEASE);
-		data = check();
+	// Leitura de dados que chegaram via serial (RX do Arduino)
+	if (Serial.available())
+	 X = Serial.read();
+ 	// Escreve valores na serial (TX do Arduino)
+	 Serial.print("X: ");
+ 	Serial.println(X);
+	switch (dataIn){
+		case 'w':  
+		  Frente();
+		  break;
+		case 'x':  
+		   tras();
+		  break;
+		case 'z':  
+		  esquerda();
+		  break;
+		case 'y':
+		  direita();  
+		  break;
+		case 'q':
+		  parado();
 		break;
 		
 	}
@@ -138,7 +107,7 @@ if (Serial.available() > 0){// Se for uma variavel valida do serial
     if (dataIn == 'F'){//Frente
       determinante = 'F';
     }
-    else if (dataIn == 'T'){//para Tr·s
+    else if (dataIn == 'T'){//para Tr√°s
       determinante = 'T';
     }
     else if (dataIn == 'E'){//Esquerda
@@ -154,40 +123,79 @@ if (Serial.available() > 0){// Se for uma variavel valida do serial
 }
    return determinant;
 }	
-	
-	
-	
-	/*	
- _______  _____  ______  _____  ______  _____  _______      _______ __   _ _______ _____  ______  _____  _______
- |       |     | |     \   |   |  ____ |     | |______      |_____| | \  |    |      |   |  ____ |     | |______
- |_____  |_____| |_____/ __|__ |_____| |_____| ______|      |     | |  \_|    |    __|__ |_____| |_____| ______|
-	
-	
-	
-
-/* If para ligar led (TESTE)
-   if(Serial.available() > 0)      // manda dados somente quando receber dados:
-   {
-      data = Serial.read();        //ler os dados que vieram e armazena em data
-      Serial.print(data);          //Print do valor de data no monitor serial
-      Serial.print("\n");        
-      if(data == '1')              // Checa quando valor de data È igual a 1
-         digitalWrite(13, HIGH);   //Se o valor È 1 ent„o LED liga
-      else if(data == '0')         // Checa quando valor de data È igual a 0
-         digitalWrite(13, LOW);    //Se o valor È 0 ent„o LED desliga
-   }
-   */
-   /*
-   
-			Precisa Rever Tudo depois 
-   
-	*/
 
 
 
-*/
 
+	void frente() // vai para frente 
+	{
+	// Liga os motores direitos sentido hor√°rio
+	  	digitalWrite(IN1, HIGH); 
+ 		digitalWrite(IN2, LOW);
+		digitalWrite(IN3, HIGH);
+ 		digitalWrite(IN4, LOW);
+	// Liga os motores esquerdos sentido anti-hor√°rio	
+		digitalWrite(IN5, LOW);
+ 		digitalWrite(IN6, HIGH);
+		digitalWrite(IN7, LOW);
+ 		digitalWrite(IN8, HIGH);
+	}
 
+	void tras()
+	{
+	// Liga os motores direitos sentido Anti-hor√°rio
+	  	digitalWrite(IN1, LOW); 
+ 		digitalWrite(IN2, HIGH);
+		digitalWrite(IN3, LOW);
+ 		digitalWrite(IN4, HIGH);
+	// Liga os motores esquerdos sentido hor√°rio	
+		digitalWrite(IN5, HIGH);
+ 		digitalWrite(IN6, LOW);
+		digitalWrite(IN7, HIGH);
+ 		digitalWrite(IN8, LOW);
+	}
+
+	void esquerda()
+	{
+	  // Liga os motores direitos sentido hor√°rio
+	  	digitalWrite(IN1, HIGH); 
+ 		digitalWrite(IN2, LOW);
+		digitalWrite(IN3, HIGH);
+ 		digitalWrite(IN4, LOW);
+	// Liga os motores esquerdos Anti-hor√°rio	
+		digitalWrite(IN5, LOW);
+ 		digitalWrite(IN6, LOW);
+		digitalWrite(IN7, LOW);
+ 		digitalWrite(IN8, LOW);  
+	}
+
+	void direita()
+	{
+	  // desliga os motores direitos
+	  	digitalWrite(IN1, LOW); 
+ 		digitalWrite(IN2, LOW);
+		digitalWrite(IN3, LOW);
+ 		digitalWrite(IN4, LOW);
+	// Liga os motores esquerdos em sentido anti-hor√°rio	
+		digitalWrite(IN5, LOW);
+ 		digitalWrite(IN6, HIGH);
+		digitalWrite(IN7, LOW);
+ 		digitalWrite(IN8, HIGH); 
+	}
+
+	void parado()// para motores
+	{
+	 // desliga os motores direitos
+	  	digitalWrite(IN1, LOW); 
+ 		digitalWrite(IN2, LOW);
+		digitalWrite(IN3, LOW);
+ 		digitalWrite(IN4, LOW);
+	// desliga os motores esquerdos 	
+		digitalWrite(IN5, LOW);
+ 		digitalWrite(IN6, LOW);
+		digitalWrite(IN7, LOW);
+ 		digitalWrite(IN8, LOW);
+	}
 
 
 
