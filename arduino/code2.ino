@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 3.3
-		Data:01/09/2017 
+		Versão: 4.0
+		Data:01/09/2017 - 22:47
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -48,15 +48,26 @@ DHT dht(DHTPIN, DHTTYPE);
 // declaração de objetos (Motores) // preciso da documentação e arquivos do motor 
 
 // Declaração de Variaveis úteis
+float h = 0;
+float t = 0;
+//float f = 0;
+float hic = 0;
+byte  val_c;
+byte  val_d;
+byte  val_u;
+byte  val_dc;
+byte  val_cm;
+int   valor_o;
+float LUX = 0;
 
-char dataIn = 'q';  // começa parado
-char determinante;
-					// coisa do bluetooth
+char dataIn = 'q';  // começa parado				
+// coisa do bluetooth
 char data = 0;            //Variavel para armazenar dados
 
 void setup()
 {
-   	Serial.begin(9600);   //Prepara o baud para transmissão de dados em serial                           
+   	Serial.begin(9600);   //Prepara o baud para transmissão de dados em serial  
+	dht.begin();
 	pinMode(IN1, OUTPUT);
  	pinMode(IN2, OUTPUT);
  	pinMode(IN3, OUTPUT);
@@ -70,13 +81,8 @@ void setup()
 
 void loop()
 {
-	
+
 	// Leitura de dados que chegaram via serial (RX do Arduino)
-	if (Serial.available())
-	 X = Serial.read();
- 	// Escreve valores na serial (TX do Arduino)
-	 Serial.print("X: ");
- 	Serial.println(X);
 	if (Serial.available() > 0){// Se for uma variavel valida do serial
     		dataIn = Serial.read();
 		switch (dataIn){
@@ -95,6 +101,63 @@ void loop()
 			case 'q':
 			  parado();
 			break;
+			case 'v':
+				h = dht.readHumidity();
+    				t = dht.readTemperature();
+    				if (isnan(h) || isnan(t))
+				{
+    				  return;
+				}
+    				hic = dht.computeHeatIndex(t, h, false);
+
+    				valor_o = hic * 10;
+    				val_c = valor_o / 1000;
+    				valor_o = valor_o - val_c * 1000;
+     				val_d = valor_o / 100;
+     				valor_o = valor_o - val_d * 100;
+     				val_u = valor_o / 10;
+     				valor_o = valor_o - val_u * 10;
+     				val_dc = valor_o / 1;
+
+     				Serial.print(val_c);
+     				Serial.print(val_d);
+     				Serial.print(val_u);
+     				Serial.print(val_dc);
+
+     				valor_o = h * 10;
+     				val_c = valor_o / 1000;
+     				valor_o = valor_o - val_c * 1000;
+     				val_d = valor_o / 100;
+     				valor_o = valor_o - val_d * 100;
+     				val_u = valor_o / 10;
+     				valor_o = valor_o - val_u * 10;
+     				val_dc = valor_o / 1;
+
+     				Serial.print(val_c);
+     				Serial.print(val_d);
+     				Serial.print(val_u);
+     				Serial.print(val_dc);
+
+
+     				LUX = analogRead(A0);
+     				LUX = LUX*100;
+     				LUX = LUX/680;
+     				LUX = 100 - LUX;
+
+     				valor_o = LUX * 10;
+     				val_c = valor_o / 1000;
+     				valor_o = valor_o - val_c * 1000;
+     				val_d = valor_o / 100;
+     				valor_o = valor_o - val_d * 100;
+     				val_u = valor_o / 10;
+     				valor_o = valor_o - val_u * 10;
+     				val_dc = valor_o / 1;
+
+     				Serial.print(val_c);
+     				Serial.print(val_d);
+     				Serial.print(val_u);
+     				Serial.print(val_dc);
+     			}
 		}	
 	}
 }		
@@ -134,7 +197,7 @@ void loop()
  		digitalWrite(IN2, LOW);
 		digitalWrite(IN3, HIGH);
  		digitalWrite(IN4, LOW);
-	// Liga os motores esquerdos Anti-horário	
+	// Desliga os motores esquerdos	
 		digitalWrite(IN5, LOW);
  		digitalWrite(IN6, LOW);
 		digitalWrite(IN7, LOW);
