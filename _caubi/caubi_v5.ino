@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 5.1
-		Data:13/09/2017 - 09:45
+		Versão: 5.3
+		Data:13/09/2017 - 10:09
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -37,15 +37,15 @@ C:::::C                   A:::::::::::::::::::::A  U:::::D     D:::::U   B::::B 
 
 
 //DECLARAÇÃO DAS PORTAS
-int IN1 = 4;   //motor Dianteiro direito
-int IN2 = 5;  //motor Dianteiro direito
-int IN3 = 6;  //motor Traseiro direito
-int IN4 = 7;  //motor Traseiro direito
-int IN5 = 8;  //motor Dianteiro Esquerdo
-int IN6 = 9;  //motor Dianteiro Esquerdo
-int IN7 = 10; //motor Traseiro Esquerdo
-int IN8 = 11; //motor Traseiro Esquerdo
-int luz = A1; //porta do sensor de luz
+const int IN1 = 4;   //motor Dianteiro direito
+const int IN2 = 5;  //motor Dianteiro direito
+const int IN3 = 6;  //motor Traseiro direito
+const int IN4 = 7;  //motor Traseiro direito
+const int IN5 = 8;  //motor Dianteiro Esquerdo
+const int IN6 = 9;  //motor Dianteiro Esquerdo
+const int IN7 = 10; //motor Traseiro Esquerdo
+const int IN8 = 11; //motor Traseiro Esquerdo
+const int luz = A1; //porta do sensor de luz
 // Variaveis do sensor de luz
 int valorsensor = 0; 
 int LUMINOS;
@@ -76,30 +76,30 @@ void loop()
         entrada = Serial.read();
     switch (entrada){
       case 'F':  
-        frente();
-		Serial.print("ANDA PRA FRENTE"); // PRINT PARA VER SE ESTÁ RODANDO
-        break;
+			frente();
+			Serial.print("ANDA PRA FRENTE"); // PRINT PARA VER SE ESTÁ RODANDO
+			break;
       case 'B':  
-         tras();
-		 Serial.print("ANDA PRA TRAS"); // PRINT PARA VER SE ESTÁ RODANDO
-        break;
+			tras();
+			Serial.print("ANDA PRA TRAS"); // PRINT PARA VER SE ESTÁ RODANDO
+			break;
       case 'L':  
-        esquerda();
-		Serial.print("VIRA A ESQUERDA"); // PRINT PARA VER SE ESTÁ RODANDO
-        break;
+			esquerda();
+			Serial.print("VIRA A ESQUERDA"); // PRINT PARA VER SE ESTÁ RODANDO
+			break;
       case 'R':
-        direita();
-		Serial.print("VIRA A DIREITA");	// PRINT PARA VER SE ESTÁ RODANDO	
-        break;
+			direita();
+			Serial.print("VIRA A DIREITA");	// PRINT PARA VER SE ESTÁ RODANDO	
+			break;
       case 'S':
-        parado();
-      break;
+			parado();
+			break;
       case 'V':
-        lumi();
-        break;
+			lumi();
+			break;
       default:
-        parado();
-      break;
+			parado();
+			break;
     }
   } 
 }
@@ -122,6 +122,8 @@ void loop()
     digitalWrite(IN8, HIGH);
   }
 
+
+  
   void tras()
   {
   // Liga os motores direitos sentido Anti-horário
@@ -177,7 +179,88 @@ void loop()
     digitalWrite(IN7, LOW);
     digitalWrite(IN8, LOW);
   }
+  
+  
+  ///////////////////////////////////// 
+  //////// Funções ANALOGICAS /////////
+  ///////////////////////////////////// 
+  
+  void a_frente() // vai para frente 
+  {
+  // Liga os motores direitos sentido horário
+    analogWrite(IN1, HIGH); 
+    analogWrite(IN2, LOW);
+    analogWrite(IN3, HIGH);
+    analogWrite(IN4, LOW);
+  // Liga os motores esquerdos sentido anti-horário 
+    analogWrite(IN5, LOW);
+    analogWrite(IN6, HIGH);
+    analogWrite(IN7, LOW);
+    analogWrite(IN8, HIGH);
+  }
 
+
+  
+  void a_tras()
+  {
+  // Liga os motores direitos sentido Anti-horário
+    analogWrite(IN1, LOW); 
+    analogWrite(IN2, HIGH);
+    analogWrite(IN3, LOW);
+    analogWrite(IN4, HIGH);
+  // Liga os motores esquerdos sentido horário  
+    analogWrite(IN5, HIGH);
+    analogWrite(IN6, LOW);
+    analogWrite(IN7, HIGH);
+    analogWrite(IN8, LOW);
+  }
+
+  void a_esquerda()
+  {
+    // Liga os motores direitos sentido horário
+	analogWrite(IN1, HIGH); 
+    analogWrite(IN2, LOW);
+    analogWrite(IN3, HIGH);
+    analogWrite(IN4, LOW);
+  // Desliga os motores esquerdos 
+    analogWrite(IN5, LOW);
+    analogWrite(IN6, LOW);
+    analogWrite(IN7, LOW);
+    analogWrite(IN8, LOW);  
+  }
+
+  void a_direita()
+  {
+    // desliga os motores direitos
+    analogWrite(IN1, LOW); 
+    analogWrite(IN2, LOW);
+    analogWrite(IN3, LOW);
+    analogWrite(IN4, LOW);
+  // Liga os motores esquerdos em sentido anti-horário  
+    analogWrite(IN5, LOW);
+    analogWrite(IN6, HIGH);
+    analogWrite(IN7, LOW);
+    analogWrite(IN8, HIGH); 
+  }
+
+  void a_parado()// para motores
+  {
+   // desliga os motores direitos
+    analogWrite(IN1, LOW); 
+    analogWrite(IN2, LOW);
+    analogWrite(IN3, LOW);
+    analogWrite(IN4, LOW);
+  // desliga os motores esquerdos   
+    analogWrite(IN5, LOW);
+    analogWrite(IN6, LOW);
+    analogWrite(IN7, LOW);
+    analogWrite(IN8, LOW);
+  }
+  
+  ///////////////////////////////////// 
+  /////// Funções DOS SENSORES ////////
+  /////////////////////////////////////
+  
   void lumi()
   {
     valorsensor = analogRead(luz); // armazena valor analogico de luz na variavel
