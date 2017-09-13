@@ -22,3 +22,13 @@
 - Lucas 
 - Lucas
 - Natalia
+
+
+### Componentes do robo explorador:
+
+ - 1 Arduino MEGA 2526
+ - 4 Motores 30:1
+ - 1 Módulo Bluetooth HC-06
+ - 1 Sendor de temperatura e umidade DTH11
+ - 2 Driver Motor ponte-H
+ - 1 Sensor LDR analógico
