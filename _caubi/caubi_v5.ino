@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 5.3
-		Data:13/09/2017 - 10:09
+		Versão: 5.4
+		Data:13/09/2017 - 12:54
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -111,7 +111,7 @@ void loop()
   void frente() // vai para frente 
   {
   // Liga os motores direitos sentido horário
-      digitalWrite(IN1, HIGH); 
+    digitalWrite(IN1, HIGH); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, HIGH);
     digitalWrite(IN4, LOW);
@@ -127,7 +127,7 @@ void loop()
   void tras()
   {
   // Liga os motores direitos sentido Anti-horário
-      digitalWrite(IN1, LOW); 
+    digitalWrite(IN1, LOW); 
     digitalWrite(IN2, HIGH);
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, HIGH);
@@ -141,7 +141,7 @@ void loop()
   void esquerda()
   {
     // Liga os motores direitos sentido horário
-      digitalWrite(IN1, HIGH); 
+    digitalWrite(IN1, HIGH); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, HIGH);
     digitalWrite(IN4, LOW);
@@ -155,7 +155,7 @@ void loop()
   void direita()
   {
     // desliga os motores direitos
-      digitalWrite(IN1, LOW); 
+    digitalWrite(IN1, LOW); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, LOW);
@@ -169,7 +169,7 @@ void loop()
   void parado()// para motores
   {
    // desliga os motores direitos
-      digitalWrite(IN1, LOW); 
+    digitalWrite(IN1, LOW); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, LOW);
