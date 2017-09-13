@@ -24,7 +24,7 @@
 - Natalia
 
 
-### Componentes do robo explorador:
+### Componentes do robo:
 
  - 1 Arduino MEGA 2526
  - 4 Motores 30:1
