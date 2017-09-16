@@ -1,6 +1,6 @@
 /*
 		Robo: Caubi 
-		Versão: 5.7.1
+		Versão: 5.8
 		Data: 15/09/2017 - 22:19
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
@@ -74,29 +74,30 @@ void loop()
         entrada = Serial.read();
     switch (entrada){
       case 'F':  
-      a_frente();
+      frente();
       Serial.print("ANDA PRA FRENTE"); // PRINT PARA VER SE ESTÁ RODANDO
       break;
       case 'B':  
-      a_tras();
+      tras();
       Serial.print("ANDA PRA TRAS"); // PRINT PARA VER SE ESTÁ RODANDO
       break;
       case 'L':  
-      a_esquerda();
+      esquerda();
       Serial.print("VIRA A ESQUERDA"); // PRINT PARA VER SE ESTÁ RODANDO
       break;
       case 'R':
-      a_direita();
+      direita();
       Serial.print("VIRA A DIREITA"); // PRINT PARA VER SE ESTÁ RODANDO 
       break;
       case 'S':
-      a_parado();
+      parado();
       break;
       case 'V':
       lumi();
+      dht();
       break;
       default:
-      a_parado();
+      parado();
       break;
     }
   } 
@@ -206,10 +207,6 @@ void loop()
     {
       LUMINOS =0;
     }
-  // print no programa
-    Serial.print("L = ");
-    Serial.print(LUMINOS);
-    Serial.print(" % ");
   }
 
 void dht()
@@ -221,6 +218,10 @@ void dht()
 	{
 		temp = 0;
 	}
+	// print no programa
+   	 Serial.print("L = ");
+   	 Serial.print(LUMINOS);
+   	 Serial.print(" % ");
 	Serial.print("U = ");
     	Serial.print(umid);
     	Serial.print(" % ");
