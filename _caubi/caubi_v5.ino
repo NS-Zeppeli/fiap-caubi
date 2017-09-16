@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Vers„o: 5.4
-		Data:13/09/2017 - 12:54
+		Vers√£o: 5.5
+		Data: 15/09/2017 - 21:48
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -21,22 +21,20 @@ C:::::C                   A:::::::::::::::::::::A  U:::::D     D:::::U   B::::B 
         CCCCCCCCCCCCCAAAAAAA                   AAAAAAA  UUUUUUUUU      BBBBBBBBBBBBBBBBB   IIIIIIIIII
 		
 		// http://patorjk.com/blog/software/ // ASCII Art Source XD
-		obs: Sempre Editar a data da ediÁ„o 
-		se for uma pequena complementaÁ„o soma a vers„o: +X.1 , se for grande +1.X
-		Vou deixar esse espaÁo de complementaÁ„o e coment·rios
-*/
+		obs: Sempre Editar a data da edi√ß√£o 
+		se for uma pequena complementa√ß√£o soma a vers√£o: +X.1 , se for grande +1.X
+		Vou deixar esse espa√ßo de complementa√ß√£o e coment√°rios
+/*
 
 // Biblioteca 
 
-/*
 #include <DHT.h>
-
 #define DHTPIN A0
 #define DHTTYPE DHT11
 */
 
 
-//DECLARA«√O DAS PORTAS
+//DECLARA√á√ÉO DAS PORTAS
 const int IN1 = 4;   //motor Dianteiro direito
 const int IN2 = 5;  //motor Dianteiro direito
 const int IN3 = 6;  //motor Traseiro direito
@@ -49,14 +47,14 @@ const int luz = A1; //porta do sensor de luz
 // Variaveis do sensor de luz
 int valorsensor = 0; 
 int LUMINOS;
-// declaraÁ„o de objetos (Motores) // preciso da documentaÁ„o e arquivos do motor 
-char entrada;		// comeÁa parado        
+// declara√ß√£o de objetos (Motores) // preciso da documenta√ß√£o e arquivos do motor 
+char entrada;    // come√ßa parado        
 
 //DHT dht(DHTPIN, DHTTYPE);
 
 void setup()
 {
-  Serial.begin(9600);   //Prepara o baud para transmiss„o de dados em serial  
+  Serial.begin(9600);   //Prepara o baud para transmiss√£o de dados em serial  
   //dht.begin();
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -71,51 +69,54 @@ void setup()
 
 void loop()
 { 
-  // Leitura de dados que chegar„o via serial (RX do Arduino)
+  // Leitura de dados que chegar√£o via serial (RX do Arduino)
   while (Serial.available() > 0){ // ISSO FUNCIONA
         entrada = Serial.read();
     switch (entrada){
       case 'F':  
-			frente();
-			Serial.print("ANDA PRA FRENTE"); // PRINT PARA VER SE EST¡ RODANDO
-			break;
+      a_frente();
+      Serial.print("ANDA PRA FRENTE"); // PRINT PARA VER SE EST√Å RODANDO
+      break;
       case 'B':  
-			tras();
-			Serial.print("ANDA PRA TRAS"); // PRINT PARA VER SE EST¡ RODANDO
-			break;
+      a_tras();
+      Serial.print("ANDA PRA TRAS"); // PRINT PARA VER SE EST√Å RODANDO
+      break;
       case 'L':  
-			esquerda();
-			Serial.print("VIRA A ESQUERDA"); // PRINT PARA VER SE EST¡ RODANDO
-			break;
+      a_esquerda();
+      Serial.print("VIRA A ESQUERDA"); // PRINT PARA VER SE EST√Å RODANDO
+      break;
       case 'R':
-			direita();
-			Serial.print("VIRA A DIREITA");	// PRINT PARA VER SE EST¡ RODANDO	
-			break;
+      a_direita();
+      Serial.print("VIRA A DIREITA"); // PRINT PARA VER SE EST√Å RODANDO 
+      break;
       case 'S':
-			parado();
-			break;
+      a_parado();
+      break;
       case 'V':
-			lumi();
-			break;
+      lumi();
+      break;
       default:
-			parado();
-			break;
+      a_parado();
+      break;
     }
   } 
 }
   
  ///////////////////////////////////// 
- ///////////// FunÁıes ///////////////
+ ///////////// Fun√ß√µes ///////////////
  ///////////////////////////////////// 
 
   void frente() // vai para frente 
   {
-  // Liga os motores direitos sentido hor·rio
+  // Liga os motores direitos sentido hor√°rio
+    parado();
+    delay(300);
     digitalWrite(IN1, HIGH); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, HIGH);
     digitalWrite(IN4, LOW);
-  // Liga os motores esquerdos sentido anti-hor·rio 
+    
+  // Liga os motores esquerdos sentido anti-hor√°rio 
     digitalWrite(IN5, LOW);
     digitalWrite(IN6, HIGH);
     digitalWrite(IN7, LOW);
@@ -126,12 +127,15 @@ void loop()
   
   void tras()
   {
-  // Liga os motores direitos sentido Anti-hor·rio
+  
+    parado();
+    delay(300);
+    // Liga os motores direitos sentido Anti-hor√°rio
     digitalWrite(IN1, LOW); 
     digitalWrite(IN2, HIGH);
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, HIGH);
-  // Liga os motores esquerdos sentido hor·rio  
+  // Liga os motores esquerdos sentido hor√°rio  
     digitalWrite(IN5, HIGH);
     digitalWrite(IN6, LOW);
     digitalWrite(IN7, HIGH);
@@ -140,7 +144,9 @@ void loop()
 
   void esquerda()
   {
-    // Liga os motores direitos sentido hor·rio
+    parado();
+    delay(300);
+    // Liga os motores direitos sentido hor√°rio
     digitalWrite(IN1, HIGH); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, HIGH);
@@ -154,12 +160,14 @@ void loop()
 
   void direita()
   {
+    parado();
+    delay(300);
     // desliga os motores direitos
     digitalWrite(IN1, LOW); 
     digitalWrite(IN2, LOW);
     digitalWrite(IN3, LOW);
     digitalWrite(IN4, LOW);
-  // Liga os motores esquerdos em sentido anti-hor·rio  
+  // Liga os motores esquerdos em sentido anti-hor√°rio  
     digitalWrite(IN5, LOW);
     digitalWrite(IN6, HIGH);
     digitalWrite(IN7, LOW);
@@ -182,17 +190,19 @@ void loop()
   
   
   ///////////////////////////////////// 
-  //////// FunÁıes ANALOGICAS /////////
+  //////// Fun√ß√µes ANALOGICAS /////////
   ///////////////////////////////////// 
   
   void a_frente() // vai para frente 
   {
-  // Liga os motores direitos sentido hor·rio
+    a_parado();
+    delay(300);
+  // Liga os motores direitos sentido hor√°rio
     analogWrite(IN1, HIGH); 
     analogWrite(IN2, LOW);
     analogWrite(IN3, HIGH);
     analogWrite(IN4, LOW);
-  // Liga os motores esquerdos sentido anti-hor·rio 
+  // Liga os motores esquerdos sentido anti-hor√°rio 
     analogWrite(IN5, LOW);
     analogWrite(IN6, HIGH);
     analogWrite(IN7, LOW);
@@ -203,12 +213,14 @@ void loop()
   
   void a_tras()
   {
-  // Liga os motores direitos sentido Anti-hor·rio
+    a_parado();
+    delay(300);
+  // Liga os motores direitos sentido Anti-hor√°rio
     analogWrite(IN1, LOW); 
     analogWrite(IN2, HIGH);
     analogWrite(IN3, LOW);
     analogWrite(IN4, HIGH);
-  // Liga os motores esquerdos sentido hor·rio  
+  // Liga os motores esquerdos sentido hor√°rio  
     analogWrite(IN5, HIGH);
     analogWrite(IN6, LOW);
     analogWrite(IN7, HIGH);
@@ -217,8 +229,10 @@ void loop()
 
   void a_esquerda()
   {
-    // Liga os motores direitos sentido hor·rio
-	analogWrite(IN1, HIGH); 
+    a_parado();
+    delay(300);
+    // Liga os motores direitos sentido hor√°rio
+    analogWrite(IN1, HIGH); 
     analogWrite(IN2, LOW);
     analogWrite(IN3, HIGH);
     analogWrite(IN4, LOW);
@@ -231,12 +245,14 @@ void loop()
 
   void a_direita()
   {
+    a_parado();
+    delay(300);
     // desliga os motores direitos
     analogWrite(IN1, LOW); 
     analogWrite(IN2, LOW);
     analogWrite(IN3, LOW);
     analogWrite(IN4, LOW);
-  // Liga os motores esquerdos em sentido anti-hor·rio  
+  // Liga os motores esquerdos em sentido anti-hor√°rio  
     analogWrite(IN5, LOW);
     analogWrite(IN6, HIGH);
     analogWrite(IN7, LOW);
@@ -258,15 +274,15 @@ void loop()
   }
   
   ///////////////////////////////////// 
-  /////// FunÁıes DOS SENSORES ////////
+  /////// Fun√ß√µes DOS SENSORES ////////
   /////////////////////////////////////
   
   void lumi()
   {
     valorsensor = analogRead(luz); // armazena valor analogico de luz na variavel
     LUMINOS = map(valorsensor, 0, 960, 0, 100); //armazena valor mapeado de 0 a 100
-	
-	// condicional para o valor da luminosidade n„o dar acima de 100% ou abaixo de 0%
+  
+  // condicional para o valor da luminosidade n√£o dar acima de 100% ou abaixo de 0%
     if (LUMINOS > 100)
     {
       LUMINOS = 100;
@@ -275,7 +291,7 @@ void loop()
     {
       LUMINOS =0;
     }
-	// print no programa
+  // print no programa
     Serial.print("L = ");
     Serial.print(LUMINOS);
     Serial.print(" % ");
