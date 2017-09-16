@@ -24,15 +24,15 @@ C:::::C                   A:::::::::::::::::::::A  U:::::D     D:::::U   B::::B 
 		obs: Sempre Editar a data da edição 
 		se for uma pequena complementação soma a versão: +X.1 , se for grande +1.X
 		Vou deixar esse espaço de complementação e comentários
-/*
-
+*/
 // Biblioteca 
 
 #include <DHT.h>
 #define DHTPIN A0
-#define DHTTYPE DHT11
-*/
 
+dht DHT;
+int temp;
+int umid;
 
 //DECLARAÇÃO DAS PORTAS
 const int IN1 = 4;   //motor Dianteiro direito
@@ -210,5 +210,22 @@ void loop()
     Serial.print("L = ");
     Serial.print(LUMINOS);
     Serial.print(" % ");
-    Serial.println(" ");
   }
+
+void dht()
+{
+	DHT.read11(DHTPIN)
+	temp = DHT.temperature -4;
+	umid = DHT.humidity;
+	if (temp < 0)
+	{
+		temp = 0;
+	}
+	Serial.print("U = ");
+    	Serial.print(umid);
+    	Serial.print(" % ");
+	Serial.print("T = ");
+    	Serial.print(temp);
+    	Serial.print(" C");
+   	Serial.println(" ");
+}
