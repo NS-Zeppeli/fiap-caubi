@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 5.5
-		Data: 15/09/2017 - 21:48
+		Versão: 5.6
+		Data: 15/09/2017 - 22:05
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -186,91 +186,6 @@ void loop()
     digitalWrite(IN6, LOW);
     digitalWrite(IN7, LOW);
     digitalWrite(IN8, LOW);
-  }
-  
-  
-  ///////////////////////////////////// 
-  //////// Funções ANALOGICAS /////////
-  ///////////////////////////////////// 
-  
-  void a_frente() // vai para frente 
-  {
-    a_parado();
-    delay(300);
-  // Liga os motores direitos sentido horário
-    analogWrite(IN1, HIGH); 
-    analogWrite(IN2, LOW);
-    analogWrite(IN3, HIGH);
-    analogWrite(IN4, LOW);
-  // Liga os motores esquerdos sentido anti-horário 
-    analogWrite(IN5, LOW);
-    analogWrite(IN6, HIGH);
-    analogWrite(IN7, LOW);
-    analogWrite(IN8, HIGH);
-  }
-
-
-  
-  void a_tras()
-  {
-    a_parado();
-    delay(300);
-  // Liga os motores direitos sentido Anti-horário
-    analogWrite(IN1, LOW); 
-    analogWrite(IN2, HIGH);
-    analogWrite(IN3, LOW);
-    analogWrite(IN4, HIGH);
-  // Liga os motores esquerdos sentido horário  
-    analogWrite(IN5, HIGH);
-    analogWrite(IN6, LOW);
-    analogWrite(IN7, HIGH);
-    analogWrite(IN8, LOW);
-  }
-
-  void a_esquerda()
-  {
-    a_parado();
-    delay(300);
-    // Liga os motores direitos sentido horário
-    analogWrite(IN1, HIGH); 
-    analogWrite(IN2, LOW);
-    analogWrite(IN3, HIGH);
-    analogWrite(IN4, LOW);
-  // Desliga os motores esquerdos 
-    analogWrite(IN5, LOW);
-    analogWrite(IN6, LOW);
-    analogWrite(IN7, LOW);
-    analogWrite(IN8, LOW);  
-  }
-
-  void a_direita()
-  {
-    a_parado();
-    delay(300);
-    // desliga os motores direitos
-    analogWrite(IN1, LOW); 
-    analogWrite(IN2, LOW);
-    analogWrite(IN3, LOW);
-    analogWrite(IN4, LOW);
-  // Liga os motores esquerdos em sentido anti-horário  
-    analogWrite(IN5, LOW);
-    analogWrite(IN6, HIGH);
-    analogWrite(IN7, LOW);
-    analogWrite(IN8, HIGH); 
-  }
-
-  void a_parado()// para motores
-  {
-   // desliga os motores direitos
-    analogWrite(IN1, LOW); 
-    analogWrite(IN2, LOW);
-    analogWrite(IN3, LOW);
-    analogWrite(IN4, LOW);
-  // desliga os motores esquerdos   
-    analogWrite(IN5, LOW);
-    analogWrite(IN6, LOW);
-    analogWrite(IN7, LOW);
-    analogWrite(IN8, LOW);
   }
   
   ///////////////////////////////////// 
