@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 5.6
-		Data: 15/09/2017 - 22:05
+		Versão: 5.7.1
+		Data: 15/09/2017 - 22:19
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
