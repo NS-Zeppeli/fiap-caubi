@@ -1,7 +1,7 @@
 /*
 		Robo: Caubi 
-		Versão: 5.8
-		Data: 15/09/2017 - 22:19
+		Versão: 6.0
+		Data: 20/09/2017 - 07:42
 		                                                                                       
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -27,12 +27,11 @@ C:::::C                   A:::::::::::::::::::::A  U:::::D     D:::::U   B::::B 
 */
 // Biblioteca 
 
-#include <DHT.h>
-#define DHTPIN A0
+#include "DHT.h"
 
-dht DHT;
-int temp;
-int umid;
+#define DHTPIN A0
+#define DHTTYPE DHT11
+
 
 //DECLARAÇÃO DAS PORTAS
 const int IN1 = 4;   //motor Dianteiro direito
@@ -49,13 +48,16 @@ int valorsensor = 0;
 int LUMINOS;
 // declaração de objetos (Motores) // preciso da documentação e arquivos do motor 
 char entrada;    // começa parado        
+float h;
+float t;
 
-//DHT dht(DHTPIN, DHTTYPE);
+
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup()
 {
   Serial.begin(9600);   //Prepara o baud para transmissão de dados em serial  
-  //dht.begin();
+  dht.begin();
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
@@ -69,6 +71,8 @@ void setup()
 
 void loop()
 { 
+  h = dht.readHumidity();
+  t = dht.readTemperature();
   // Leitura de dados que chegarão via serial (RX do Arduino)
   while (Serial.available() > 0){ // ISSO FUNCIONA
         entrada = Serial.read();
@@ -94,7 +98,7 @@ void loop()
       break;
       case 'V':
       lumi();
-      dht();
+      dhtr();
       break;
       default:
       parado();
@@ -209,24 +213,26 @@ void loop()
     }
   }
 
-void dht()
+
+void dhtr()
 {
-	DHT.read11(DHTPIN)
-	temp = DHT.temperature -4;
-	umid = DHT.humidity;
+  /*
+	int temp = DHT.temperature -4;
+	int umid = DHT.humidity;
 	if (temp < 0)
 	{
 		temp = 0;
 	}
+ */
 	// print no programa
    	 Serial.print("L = ");
    	 Serial.print(LUMINOS);
    	 Serial.print(" % ");
 	Serial.print("U = ");
-    	Serial.print(umid);
+    	Serial.print(h);
     	Serial.print(" % ");
 	Serial.print("T = ");
-    	Serial.print(temp);
+    	Serial.print(t);
     	Serial.print(" C");
    	Serial.println(" ");
 }
