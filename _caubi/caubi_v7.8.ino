@@ -1,7 +1,7 @@
 /*
     Robo: Caubi 
-    Versão: 7.8
-    Data: 11/10/2017 - 15:01
+    Versão: v8.0
+    Data: 18/10/2017 - 16:34
                                                                                            
         CCCCCCCCCCCCC               AAA           UUUUUUUU     UUUUUUUUBBBBBBBBBBBBBBBBB   IIIIIIIIII
      CCC::::::::::::C              A:::A          U::::::U     U::::::UB::::::::::::::::B  I::::::::I
@@ -43,7 +43,7 @@ const int IN6 = 11;  //motor Dianteiro Esquerdo
 const int IN7 = 12; //motor Traseiro Esquerdo
 const int IN8 = 13; //motor Traseiro Esquerdo
 // controle de velocidade
-int velocidade, aux = 0;
+int velocidade, aux = 0, aux_led = 0;
 int veldd = 2;
 int velde = 3;
 int veltd = 4;
@@ -56,7 +56,9 @@ int LUMINOS;
 char entrada;        
 float h;
 float t;
-
+// portas dos leds 
+int L1 = 49;
+int L2 = 51;
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -78,6 +80,8 @@ void setup()
   pinMode(veltd, OUTPUT);
   pinMode(velte, OUTPUT);
   pinMode(A1, INPUT);
+  pinMode(L1, OUTPUT);
+  pinMode(L2, OUTPUT);
 }
 
 void loop()
@@ -123,6 +127,18 @@ void loop()
           aux = 0;
         }
       break;
+	  case 'P':
+		if(aux_led == 0)
+        {
+          LedON();
+          aux_led = 1;
+        }
+        else
+        {
+          LedOFF();
+          aux_led = 0;
+        }
+	  break;
       default:
       parado();
       break;
@@ -280,6 +296,18 @@ void normal()
   analogWrite(velte,127); 
 }
 
-
+ ///////////////////////////////////// 
+ /////////Funções Dos Leds ///////////
+ /////////////////////////////////////
  
+void LedON()
+{
+	digitalWrite(L1, HIGH);
+	digitalWrite(L2, HIGH);
+}
 
+void LedOFF()
+{
+   digitalWrite(L1, LOW);
+   digitalWrite(L2, LOW);
+}
